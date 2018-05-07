@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Oracle.ManagedDataAccess.Client;
@@ -20,30 +20,75 @@ namespace WindowsFormsApp15
     public partial class Form1 : Form
     {
 
+
         public Form1()
         {
-                   string path = @"C:\LazyPull\FeedPull\Username.txt";
+
+
+            string path = @"C:\LazyPull\FeedPull\Username.txt";
             string path2 = @"C:\LazyPull\FeedPull\Password.txt";//path to resource file location
             InitializeComponent();
+
             if (File.Exists(path) == false && File.Exists(path2) == false)
             {
- 
+
                 Form Form2 = new Form2();
                 textBox1.Visible = false;
                 textBox2.Visible = false;
                 button1.Visible = false;
                 label1.Visible = false;
                 Form2.Show();
-                
             }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Show();
+            backgroundWorker1.RunWorkerAsync();
 
         }
 
-        
-        private void button1_Click(object sender, EventArgs e)
+
+        private void releaseObject(object obj)
         {
             try
             {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
+        private void resetCredentialsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form Form2 = new Form2();
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            button1.Visible = false;
+            label1.Visible = false;
+            Form2.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Visible = true;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+
+
                 OracleConnection cnn;
                 string sql = null;
                 string data = null;
@@ -77,7 +122,7 @@ namespace WindowsFormsApp15
                 string connectionString = $"Data Source= (DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = mcadb01.markit.partners)(PORT = 1521)) (CONNECT_DATA = (SERVICE_NAME = MCASERV.markit.partners))));User Id={Username};Password={Password}";
                 cnn = new OracleConnection(connectionString);
                 cnn.Open();
-                
+
                 string caid = textBox2.Text;
                 textBox1.Text = @"select distinct a.vndr_nm,a.FFID, a.starttime, b.* from
 (select distinct t21.vndr_nm, t564.caid, t564.FFID, trunc(ff.starttime) as starttime from CORE_MCA.NORMALIZE_DS_COMPOSITE_MAPPING tn, CORE_MCA.TBGCA21_VNDR_RCRD t21, CORE_FEED_CASTLE.RAW_MT564_EDI_EVENT t564, feedfile ff
@@ -124,7 +169,7 @@ order by starttime asc
                 OracleDataReader reader = cmd.ExecuteReader();
                 DataTable schemaTable = reader.GetSchemaTable();
                 dscmd.Fill(ds);
- 
+
                 int ii = 0;
                 for (j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
 
@@ -149,21 +194,21 @@ order by starttime asc
                     }
 
                 }
-                if (MySheet.Cells[i + 2, j + 1].Value == null)
-                {
-                    xlWorkBook.Close(false, misValue, misValue);
-                    xlApp.Quit();
-                    MyBook.Close(false, misValue, misValue);
-                    MyApp.Quit();
-                    releaseObject(MySheet);
-                    releaseObject(MyBook);
-                    releaseObject(MyApp);
-                    MessageBox.Show("please pick a valid VNDR_NTC_ID");
-                    return;
+               if (xlWorkSheet.Cells[2,1] == null)
+               {
+                   xlWorkBook.Close(false, misValue, misValue);
+                xlApp.Quit();
+                 MyBook.Close(false, misValue, misValue);
+                  MyApp.Quit();
+                 releaseObject(MySheet);
+                  releaseObject(MyBook);
+                releaseObject(MyApp);
+                 MessageBox.Show("please pick a valid VNDR_NTC_ID");
+                 return;
                 }
                 MyApp.Visible = true;
                 MyApp.Run("Dist");
-                
+
                 xlWorkBook.SaveAs("Raw_Feed_Pull.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 xlWorkBook.Close(true, misValue, misValue);
                 xlApp.Quit();
@@ -174,53 +219,38 @@ order by starttime asc
 
 
                 MessageBox.Show("Excel file created , you can find the file c:\\Raw_Feed_Pull.xls");
-                
+
                 releaseObject(MySheet);
                 releaseObject(MyBook);
                 releaseObject(MyApp);
+
+
+
+
             }
-            
+
             catch (Exception ex)
             {
-           
+
                 MessageBox.Show("logon denied, please reset databse credentials");
-                
+
             }
             finally
             {
 
                 GC.Collect();
             }
+
         }
 
-        private void releaseObject(object obj)
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
-            }
+            pictureBox1.Hide();
         }
-
-        private void resetCredentialsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form Form2 = new Form2();
-            textBox1.Visible = false;
-            textBox2.Visible = false;
-            button1.Visible = false;
-            label1.Visible = false;
-            Form2.Show();
-        }
-        
     }
+
+   }
+
     
-}
+   
+ 
