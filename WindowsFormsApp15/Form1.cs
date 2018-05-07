@@ -176,7 +176,7 @@ order by starttime asc
                 {
 
                     DataRow row = schemaTable.Rows[ii];
-                    xlWorkSheet.Cells[i + 1, j + 1] = row["columnName"];
+                  //  xlWorkSheet.Cells[i + 1, j + 1] = row["columnName"];
                     MySheet.Cells[i + 1, j + 1] = row["columnName"];
                     ii = ii + 1;
 
@@ -189,12 +189,12 @@ order by starttime asc
                     {
 
                         data = ds.Tables[0].Rows[i].ItemArray[j].ToString();
-                        xlWorkSheet.Cells[i + 2, j + 1] = data;
+                       // xlWorkSheet.Cells[i + 2, j + 1] = data;
                         MySheet.Cells[i + 2, j + 1] = data;
                     }
 
                 }
-               if (xlWorkSheet.Cells[2,1] == null)
+               if (MySheet.Cells[2,2].value  == null)
                {
                    xlWorkBook.Close(false, misValue, misValue);
                 xlApp.Quit();
@@ -209,7 +209,7 @@ order by starttime asc
                 MyApp.Visible = true;
                 MyApp.Run("Dist");
 
-                xlWorkBook.SaveAs("Raw_Feed_Pull.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+               // xlWorkBook.SaveAs("Raw_Feed_Pull.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 xlWorkBook.Close(true, misValue, misValue);
                 xlApp.Quit();
 
@@ -218,7 +218,7 @@ order by starttime asc
                 releaseObject(xlApp);
 
 
-                MessageBox.Show("Excel file created , you can find the file c:\\Raw_Feed_Pull.xls");
+               // MessageBox.Show("Excel file created , you can find the file c:\\Raw_Feed_Pull.xls");
 
                 releaseObject(MySheet);
                 releaseObject(MyBook);
