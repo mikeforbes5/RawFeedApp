@@ -77,7 +77,7 @@ namespace WindowsFormsApp15
                 string connectionString = $"Data Source= (DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = mcadb01.markit.partners)(PORT = 1521)) (CONNECT_DATA = (SERVICE_NAME = MCASERV.markit.partners))));User Id={Username};Password={Password}";
                 cnn = new OracleConnection(connectionString);
                 cnn.Open();
-                MyApp.Visible = true;
+                
                 string caid = textBox2.Text;
                 textBox1.Text = @"select distinct a.vndr_nm,a.FFID, a.starttime, b.* from
 (select distinct t21.vndr_nm, t564.caid, t564.FFID, trunc(ff.starttime) as starttime from CORE_MCA.NORMALIZE_DS_COMPOSITE_MAPPING tn, CORE_MCA.TBGCA21_VNDR_RCRD t21, CORE_FEED_CASTLE.RAW_MT564_EDI_EVENT t564, feedfile ff
@@ -124,6 +124,7 @@ order by starttime asc
                 OracleDataReader reader = cmd.ExecuteReader();
                 DataTable schemaTable = reader.GetSchemaTable();
                 dscmd.Fill(ds);
+ 
                 int ii = 0;
                 for (j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
 
@@ -148,9 +149,21 @@ order by starttime asc
                     }
 
                 }
-
+                if (MySheet.Cells[i + 2, j + 1].Value == null)
+                {
+                    xlWorkBook.Close(false, misValue, misValue);
+                    xlApp.Quit();
+                    MyBook.Close(false, misValue, misValue);
+                    MyApp.Quit();
+                    releaseObject(MySheet);
+                    releaseObject(MyBook);
+                    releaseObject(MyApp);
+                    MessageBox.Show("please pick a valid VNDR_NTC_ID");
+                    return;
+                }
+                MyApp.Visible = true;
                 MyApp.Run("Dist");
-
+                
                 xlWorkBook.SaveAs("Raw_Feed_Pull.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 xlWorkBook.Close(true, misValue, misValue);
                 xlApp.Quit();
