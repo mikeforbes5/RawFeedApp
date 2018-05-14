@@ -124,7 +124,19 @@ namespace WindowsFormsApp15
                 cnn.Open();
 
                 string caid = textBox2.Text;
-                textBox1.Text = @"select distinct a.vndr_nm,a.FFID, a.starttime, b.* from
+
+                try
+                {
+                    string value = "";
+                    comboBox1.Invoke(new MethodInvoker(delegate {
+                        if (comboBox1.SelectedIndex != -1)
+                        {
+                            value = comboBox1.SelectedItem.ToString();
+                        }
+                    }));
+                    if (value == "EDI")
+                    {
+                        textBox1.Text = @"select distinct a.vndr_nm,a.FFID, a.starttime, b.* from
 (select distinct t21.vndr_nm, t564.caid, t564.FFID, trunc(ff.starttime) as starttime from CORE_MCA.NORMALIZE_DS_COMPOSITE_MAPPING tn, CORE_MCA.TBGCA21_VNDR_RCRD t21, CORE_FEED_CASTLE.RAW_MT564_EDI_EVENT t564, feedfile ff
 where tn.NORMALIZE_ID = t21.VNDR_NTC_ID
 and t564.caid = substr(vndr_ca_id, 0, 16)
@@ -158,6 +170,52 @@ and t21.vndr_ntc_id = '" + caid + @"') a,
 where a.caid = b.caid
 order by starttime asc
 ";
+                    }
+                    else if (value == "IDC")
+                    {
+                        textBox1.Text = @"select distinct a.vndr_nm,a.FFID, a.starttime, b.* from 
+(select distinct t21.vndr_nm, t564.caid, t564.FFID, trunc(ff.starttime) as starttime from CORE_MCA.NORMALIZE_DS_COMPOSITE_MAPPING tn, CORE_MCA.TBGCA21_VNDR_RCRD t21, CORE_FEED_CASTLE.RAW_IDC_EVENTS t564, feedfile ff
+where tn.NORMALIZE_ID = t21.VNDR_NTC_ID
+and t564.caid = substr(vndr_ca_id,0,10)
+and ff.pkey = t564.ffid
+and t21.vndr_ntc_id = '" + caid + @"') a,
+(select t564.caid, t564.field_path, t564.local_name, t564.field_name, t564.field_value from CORE_FEED_CASTLE.RAW_IDC_EVENTS t564) b
+where a.caid = b.caid
+order by starttime asc      
+
+UNION
+
+select distinct a.vndr_nm,a.FFID, a.starttime, b.* from 
+(select distinct t21.vndr_nm, t564.caid, t564.FFID, trunc(ff.starttime) as starttime from CORE_MCA.NORMALIZE_DS_COMPOSITE_MAPPING tn, CORE_MCA.TBGCA21_VNDR_RCRD t21, CORE_FEED_CASTLE.RAW_IDC_EVENTS t564, feedfile ff
+where tn.NORMALIZE_ID = t21.VNDR_NTC_ID
+and t564.caid = substr(vndr_ca_id,0,10)
+and ff.pkey = t564.ffid
+and t21.vndr_ntc_id = '" + caid + @"') a,
+(select t564.caid, t564.field_path, t564.local_name, t564.field_name, t564.field_value from CORE_FEED_CASTLE.RAW_IDC_OPTIONS t564) b
+where a.caid = b.caid
+order by starttime asc
+
+UNION
+
+select distinct a.vndr_nm,a.FFID, a.starttime, b.* from 
+(select distinct t21.vndr_nm, t564.caid, t564.FFID, trunc(ff.starttime) as starttime from CORE_MCA.NORMALIZE_DS_COMPOSITE_MAPPING tn, CORE_MCA.TBGCA21_VNDR_RCRD t21, CORE_FEED_CASTLE.RAW_IDC_EVENTS t564, feedfile ff
+where tn.NORMALIZE_ID = t21.VNDR_NTC_ID
+and t564.caid = substr(vndr_ca_id,0,16)
+and ff.pkey = t564.ffid
+and t21.vndr_ntc_id = '" + caid + @"') a,
+(select t564.caid, t564.field_path, t564.local_name, t564.field_name, t564.field_value from CORE_FEED_CASTLE.RAW_IDC_PAYOUTS t564) b
+where a.caid = b.caid
+order by starttime asc";
+                    }
+                    else
+                        throw new NotImplementedException();
+                }   
+                
+                catch (NotImplementedException)
+                {
+                    MessageBox.Show("Please select vendor name");
+                    
+                }
 
                 sql = textBox1.Text;
 
@@ -228,13 +286,22 @@ order by starttime asc
 
 
             }
+            catch (InvalidOperationException)
+            {
+                { };
+            }
+
+            catch (OracleException)
+            {
+                MessageBox.Show("Please Input Valid Credentials");
+            }
 
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
 
             }
+
             finally
             {
 
@@ -246,6 +313,11 @@ order by starttime asc
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             pictureBox1.Hide();
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
