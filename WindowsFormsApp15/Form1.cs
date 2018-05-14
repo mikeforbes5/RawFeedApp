@@ -180,8 +180,7 @@ and t564.caid = substr(vndr_ca_id,0,10)
 and ff.pkey = t564.ffid
 and t21.vndr_ntc_id = '" + caid + @"') a,
 (select t564.caid, t564.field_path, t564.local_name, t564.field_name, t564.field_value from CORE_FEED_CASTLE.RAW_IDC_EVENTS t564) b
-where a.caid = b.caid
-order by starttime asc      
+where a.caid = b.caid  
 
 UNION
 
@@ -193,7 +192,6 @@ and ff.pkey = t564.ffid
 and t21.vndr_ntc_id = '" + caid + @"') a,
 (select t564.caid, t564.field_path, t564.local_name, t564.field_name, t564.field_value from CORE_FEED_CASTLE.RAW_IDC_OPTIONS t564) b
 where a.caid = b.caid
-order by starttime asc
 
 UNION
 
