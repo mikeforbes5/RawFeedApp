@@ -111,7 +111,7 @@ namespace WindowsFormsApp15
                 Excel.Worksheet MySheet = null;
                 MyApp = new Excel.Application();
                 //MyBook = MyApp.Workbooks.Add(misValue);
-                MyBook = MyApp.Workbooks.Open(@"S:\Shared\Products\Markit Corporate Actions\RPA\Raw_Feed_Template_V4.xlsm");
+                MyBook = MyApp.Workbooks.Open(@"C:\LazyPull\FeedPull\Raw_Feed_Template_V4.xlsm");
                 MySheet = (Excel.Worksheet)MyBook.Worksheets.get_Item(2);
                 MySheet.Cells.ClearContents();
                 MySheet.Columns.NumberFormat = "General";
@@ -176,7 +176,7 @@ order by starttime asc
                 {
 
                     DataRow row = schemaTable.Rows[ii];
-                  //  xlWorkSheet.Cells[i + 1, j + 1] = row["columnName"];
+                  // xlWorkSheet.Cells[i + 1, j + 1] = row["columnName"];
                     MySheet.Cells[i + 1, j + 1] = row["columnName"];
                     ii = ii + 1;
 
@@ -232,7 +232,7 @@ order by starttime asc
             catch (Exception ex)
             {
 
-                MessageBox.Show("logon denied, please reset databse credentials");
+                MessageBox.Show(ex.ToString());
 
             }
             finally

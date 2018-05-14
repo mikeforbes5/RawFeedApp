@@ -22,20 +22,56 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2925F0BD75954212A1EF8D05C7A90FBD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5C88BD8776DEAABC13AAA5004B9A07C5"
+        "MsmKey" = "8:_640CCCD12A272E2D9F7D1F02DB08BD89"
         "OwnerKey" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D900A305FA9EFEA5A03BD1FECB0DC451"
+        "OwnerKey" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EF993E3635E4AE85289DA48D39A8B47B"
+        "OwnerKey" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F06BE40ED7BE4040B241AFB8E15ED2A5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D900A305FA9EFEA5A03BD1FECB0DC451"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EF993E3635E4AE85289DA48D39A8B47B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -47,7 +83,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5C88BD8776DEAABC13AAA5004B9A07C5"
+        "OwnerKey" = "8:_640CCCD12A272E2D9F7D1F02DB08BD89"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -77,10 +113,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5.2"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    "Name" = "8:Microsoft .NET Framework 4.5.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5.2"
                     }
                 }
             }
@@ -137,7 +173,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.6.1"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -176,14 +212,34 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5C88BD8776DEAABC13AAA5004B9A07C5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2925F0BD75954212A1EF8D05C7A90FBD"
+            {
+            "SourcePath" = "8:S:\\Shared\\Products\\Markit Corporate Actions\\RPA\\Raw_Feed_Template_V4.xlsm"
+            "TargetName" = "8:Raw_Feed_Template_V4.xlsm"
+            "Tag" = "8:"
+            "Folder" = "8:_BD9A76461661414BACD2AB600294192A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_640CCCD12A272E2D9F7D1F02DB08BD89"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_5C88BD8776DEAABC13AAA5004B9A07C5"
+                    "_640CCCD12A272E2D9F7D1F02DB08BD89"
                     {
                     "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
@@ -205,6 +261,88 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D900A305FA9EFEA5A03BD1FECB0DC451"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WpfAnimatedGif, Version=1.4.15.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D900A305FA9EFEA5A03BD1FECB0DC451"
+                    {
+                    "Name" = "8:WpfAnimatedGif.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WpfAnimatedGif.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BD9A76461661414BACD2AB600294192A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EF993E3635E4AE85289DA48D39A8B47B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WinFormAnimation, Version=1.5.6298.3372, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EF993E3635E4AE85289DA48D39A8B47B"
+                    {
+                    "Name" = "8:WinFormAnimation.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WinFormAnimation.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BD9A76461661414BACD2AB600294192A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F06BE40ED7BE4040B241AFB8E15ED2A5"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Pictures\\salt5_qgG_icon.ico"
+            "TargetName" = "8:salt5_qgG_icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_BD9A76461661414BACD2AB600294192A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -264,7 +402,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FeedPull"
         "ProductCode" = "8:{DF3B2AE8-B00A-4745-BEF3-A5425EC839A1}"
-        "PackageCode" = "8:{193AA659-2AE5-458F-880E-54C55B80AC18}"
+        "PackageCode" = "8:{EB29067B-81DF-4886-9C6A-F62B7F935B02}"
         "UpgradeCode" = "8:{3C0BE342-A05E-425E-AE84-B5943DEAD280}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -386,7 +524,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1A34637188194A989ADD8DC7A4224F55"
             {
-            "Name" = "8:Shortcut to Primary output from WindowsFormsApp15 (Active)"
+            "Name" = "8:MCA-FeedPull"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -395,12 +533,12 @@
             "Target" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
             "Folder" = "8:_ECAA3E65EECE40FF880F228B06C1FCE9"
             "WorkingFolder" = "8:_BD9A76461661414BACD2AB600294192A"
-            "Icon" = "8:"
+            "Icon" = "8:_F06BE40ED7BE4040B241AFB8E15ED2A5"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_33510A3B36594EF2988547FFC5D6C407"
             {
-            "Name" = "8:Shortcut to Primary output from WindowsFormsApp15 (Active)"
+            "Name" = "8:MCA-FeedPull"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -409,7 +547,7 @@
             "Target" = "8:_389CEC6B09C54DB2A7F5410C7C4E805D"
             "Folder" = "8:_F6C2AF24074C40AEB963DBF55640690B"
             "WorkingFolder" = "8:_BD9A76461661414BACD2AB600294192A"
-            "Icon" = "8:"
+            "Icon" = "8:_F06BE40ED7BE4040B241AFB8E15ED2A5"
             "Feature" = "8:"
             }
         }
