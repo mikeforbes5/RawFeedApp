@@ -41,6 +41,34 @@ namespace WindowsFormsApp15
             }
             
         }
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+            string value = "";
+            comboBox1.Invoke(new MethodInvoker(delegate
+            {
+                if (comboBox1.SelectedIndex != -1)
+                {
+                    value = comboBox1.SelectedItem.ToString();
+                }
+            }));
+            if (value == "IDC")
+            {
+                label2.Visible = true;
+                comboBox2.Show();
+            }
+            else if (value == "EDI")
+            {
+                label2.Visible = false;
+                comboBox2.Hide();
+            }
+            else if (value == "CDS")
+            {
+                label2.Visible = false;
+                comboBox2.Hide();
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -82,6 +110,7 @@ namespace WindowsFormsApp15
         {
             pictureBox1.Visible = true;
         }
+
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -313,10 +342,7 @@ order by starttime asc";
             pictureBox1.Hide();
         }
 
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 
    }
